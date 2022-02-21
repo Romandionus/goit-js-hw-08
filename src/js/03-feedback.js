@@ -8,11 +8,11 @@ function saveMessage(evt) {
 const email = form.elements.email.value;
 const message = form.elements.message.value;
 const TRY_ANOTHER_KEY = {
-    email: email,
-    message: message,
+    email,
+    message
 }
 console.log(TRY_ANOTHER_KEY)
-    localStorage.setItem(TRY_ANOTHER_KEY, JSON.stringify(TRY_ANOTHER_KEY))
+    localStorage.setItem("feedback-form-state", JSON.stringify(TRY_ANOTHER_KEY))
     updateInput();
     form.reset
 }
