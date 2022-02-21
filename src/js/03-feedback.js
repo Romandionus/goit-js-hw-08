@@ -1,22 +1,23 @@
 const form = document.querySelector(`form`);
 const input = document.querySelector(`input`);
-// const textarea = document.querySelector(`textarea`);
-const LOCALSTORAGE_KEY = "feedback-form-state";
-const SECOND_KEY = "message-value";
 
-updateInput();
-// form.addEventListener(`submit`, saveMessage);
+// updateInput();
 form.addEventListener(`input`, saveMessage);
 
 function saveMessage(evt) {
-    evt.preventDefault();
-    localStorage.setItem(SECOND_KEY, form.elements.message.value);
-    localStorage.setItem(LOCALSTORAGE_KEY, form.elements.email.value);
+const email = form.elements.email.value;
+const message = form.elements.message.value;
+const TRY_ANOTHER_KEY = {
+    email: email,
+    message: message,
+}
+console.log(TRY_ANOTHER_KEY)
+    localStorage.setItem(TRY_ANOTHER_KEY, JSON.stringify(TRY_ANOTHER_KEY))
     updateInput();
     form.reset
 }
 
-function updateInput() {
-    input.textContent = localStorage.getItem(LOCALSTORAGE_KEY) || "";
-    // textarea.textContent = localStorage.getItem(LOCALSTORAGE_KEY)|| "";
-}
+// function updateInput() {
+//     input.textContent = localStorage.getItem(TRY_ANOTHER_KEY);
+//     // textarea.textContent = localStorage.getItem(SECOND_KEY)|| "";
+// }
