@@ -5,34 +5,43 @@ const object = {};
 updateInput();
 form.addEventListener(`submit`, evt => {
   evt.preventDefault();
-  // console.log(form.elements.email.value)
-  // console.log(form.elements.message.value)
   const formData = new FormData(form)
-  console.log(formData)
-  formData.forEach((value, key) => console.log(value, key));
+  // formData.forEach((value, key) =>
+  //   console.log(value, key));
+  object = {};
+  localStorage.removeItem(`feedback-form-state`)
 });
 
 
 form.addEventListener(`input`, throttle(evt => {
   object[evt.target.name] = evt.target.value
   localStorage.setItem(`feedback-form-state`, JSON.stringify(object))
-  // console.log(evt.target.name)
-  // console.log(evt.target.value)
-  // console.log(object)
-}, 500))
+  }, 500))
   
 function updateInput() {
   let valueInput = localStorage.getItem(`feedback-form-state`)
     if (valueInput) {
     valueInput = JSON.parse(valueInput)
-      // console.log(valueInput)
-      Object.entries(valueInput).forEach(([name, value]) => {
-        // console.log(name, value)
-        object[name] = value;
+            Object.entries(valueInput).forEach(([name, value]) => {
+                object[name] = value;
         form.elements[name].value = value;
       } )
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // // updateInput();
 // form.addEventListener(`input`, throttle(saveMessage, 500));
 
