@@ -9,15 +9,32 @@ player.on('timeupdate', throttle((data) => {
     }, 1000))
 
 const currentTime = localStorage.getItem("videoplayer-current-time")
+if (currentTime !== null) {
 const parsedCurrentTime = JSON.parse(currentTime)
 console.log(parsedCurrentTime)
+player.setCurrentTime(parsedCurrentTime)
+};
 
-player.setCurrentTime(parsedCurrentTime).then(function (seconds) {
-}).catch(function(error) {
-    switch (error.name) {
-        case 'RangeError':
-            break;
-        default:
-            break;
-    }
-});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// .then(function (seconds) {
+// }).catch(function(error) {
+//     switch (error.name) {
+//         case 'RangeError':
+//             break;
+//         default:
+//             break;
+//     }

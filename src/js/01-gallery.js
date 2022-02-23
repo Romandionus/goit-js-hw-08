@@ -10,17 +10,6 @@ const newLinkImgEl = galleryItems.map((item) => `<div class="gallery"><a class="
 <img class="gallery__image" src="${item.preview}" alt="${item.description}"/></a></div>`).join("")
 galleryEl.insertAdjacentHTML('beforeend', newLinkImgEl)
 
-galleryEl.addEventListener('click', clickOnImg)
-
-function clickOnImg(evt) {
-    evt.preventDefault();
-    const typeOfImg = evt.target.nodeName;
-    if (typeOfImg !== `IMG`) {
-        return;
-    }
-    console.dir(typeOfImg)
-}
-
 let gallery = new SimpleLightbox('.gallery a',
     {
     overlay:true,
@@ -31,3 +20,29 @@ let gallery = new SimpleLightbox('.gallery a',
     captionPosition: 'bottom',
     captionDelay: 250,
     });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // galleryEl.addEventListener('click', clickOnImg)
+
+// function clickOnImg(evt) {
+//     evt.preventDefault();
+//     const typeOfImg = evt.target.nodeName;
+//     if (typeOfImg !== `IMG`) {
+//         return;
+//     }
+//     console.dir(typeOfImg)
+// }
