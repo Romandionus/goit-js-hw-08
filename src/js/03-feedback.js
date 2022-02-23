@@ -1,31 +1,33 @@
 import throttle from 'lodash.throttle';
 const form = document.querySelector(`.feedback-form`);
-// const input = document.querySelector(`input`);
-const object = {};
+
+const objectText = {};
 updateInput();
 form.addEventListener(`submit`, evt => {
-  evt.preventDefault();
-  const formData = new FormData(form)
-  // formData.forEach((value, key) =>
-  //   console.log(value, key));
-  object = {};
-  localStorage.removeItem(`feedback-form-state`)
+    if (evt.currentTarget.elements.message.value) {
+      evt.preventDefault();
+      localStorage.clear();
+      form.reset();
+      console.log(objectText)
+    } else {
+      alert(`заполни все поля`)
+    }
 });
 
-
 form.addEventListener(`input`, throttle(evt => {
-  object[evt.target.name] = evt.target.value
-  localStorage.setItem(`feedback-form-state`, JSON.stringify(object))
+  objectText[evt.target.name] = evt.target.value
+  localStorage.setItem(`feedback-form-state`, JSON.stringify(objectText))
   }, 500))
   
 function updateInput() {
   let valueInput = localStorage.getItem(`feedback-form-state`)
     if (valueInput) {
-    valueInput = JSON.parse(valueInput)
-            Object.entries(valueInput).forEach(([name, value]) => {
-                object[name] = value;
+      valueInput = JSON.parse(valueInput);
+      Object.entries(valueInput).forEach(([name, value]) => {
+        console.log([name, value])
         form.elements[name].value = value;
-      } )
+        objectText[name] = value;
+      });
   }
 }
 
@@ -39,9 +41,11 @@ function updateInput() {
 
 
 
+// const formData = new FormData(form)
+  // formData.forEach((value, key) =>
+  //   console.log(value, key));
 
-
-
+//   // //             objectText[name] = value;
 // // updateInput();
 // form.addEventListener(`input`, throttle(saveMessage, 500));
 
@@ -90,3 +94,13 @@ function updateInput() {
 //     const object = serializedState === null ? null : JSON.parse(serializedState);
     
 // }
+
+// function clearFormAndLocalStorage(evt) {
+//     if (evt.currentTarget.elements.message.value) {
+//       evt.preventDefault();
+//       localStorage.clear();
+//       form.reset();
+//     } else {
+//       alert(`заполни все поля`)
+//     }
+//   }
