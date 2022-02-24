@@ -4,11 +4,17 @@ const form = document.querySelector(`.feedback-form`);
 let objectText = {};
 updateInput();
 form.addEventListener(`submit`, evt => {
-    if (evt.currentTarget.elements.message.value) {
+  
+  const message = evt.currentTarget.elements.message.value;
+  const email = evt.currentTarget.elements.email.value;
+  
+  let formData = { email, message };
+  
+  if (formData) {
       evt.preventDefault();
       localStorage.clear();
       form.reset();
-      objectText = {};
+      objectText = {email, message};
       console.log(objectText)
     } else {
       alert(`заполни все поля`)
