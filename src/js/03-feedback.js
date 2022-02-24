@@ -1,13 +1,14 @@
 import throttle from 'lodash.throttle';
 const form = document.querySelector(`.feedback-form`);
 
-const objectText = {};
+let objectText = {};
 updateInput();
 form.addEventListener(`submit`, evt => {
     if (evt.currentTarget.elements.message.value) {
       evt.preventDefault();
       localStorage.clear();
       form.reset();
+      objectText = {};
       console.log(objectText)
     } else {
       alert(`заполни все поля`)
