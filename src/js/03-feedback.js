@@ -8,14 +8,13 @@ form.addEventListener(`submit`, evt => {
   const message = evt.currentTarget.elements.message.value;
   const email = evt.currentTarget.elements.email.value;
   
-  let formData = { email, message };
   
-  if (formData) {
+  if (email && message) {
       evt.preventDefault();
       localStorage.clear();
       form.reset();
-      objectText = {email, message};
-      console.log(objectText)
+      objectText = {};
+    console.log({ email, message })
     } else {
       alert(`заполни все поля`)
     }
@@ -46,7 +45,7 @@ function updateInput() {
 
 
 
-
+// let formData = { email, message };
 
 // const formData = new FormData(form)
   // formData.forEach((value, key) =>
